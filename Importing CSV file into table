@@ -1,0 +1,35 @@
+create table rain(
+    
+    Date Date,Location varchar(30),MinTemp float8,MaxTemp float8,
+    Rainfall float8,Evaporation float8,Sunshine float8,
+    WindGustDir varchar(10),WindGustSpeed float8,
+    WindDir9am float8,WindDir3pm varchar(10),
+    WindSpeed9am float8,WindSpeed3pm float8,Humidity9am int,
+    Humidity3pm int,Pressure9am float8,Pressure3pm float8,
+    Cloud9am int,Cloud3pm int,Temp9am float8,
+    Temp3pm float8,
+    RainToday varchar(5),RainTomorrow varchar(5)
+       
+);
+
+-- RUN BELOW QUERY IN CMD, IN POPSQL ERROR IS SHOWN
+-- SET GLOBAL local_infile=TRUE;
+-- QUIT
+-- mysql --local-infile=1 -u root -p;
+-- use 'database'
+-- load data local infile '/path/pet.txt' into table pet;
+
+
+ LOAD DATA local INFILE 'C:/Users/Rock/Documents/kaggle data files/rain in aus/weatherAUS.csv' 
+ INTO TABLE rain
+ FIELDS TERMINATED BY ',' 
+ LINES TERMINATED BY '\n' 
+ IGNORE 1 ROWS (Date,Location,MinTemp,MaxTemp,Rainfall,
+ Evaporation,Sunshine,WindGustDir,WindGustSpeed,WindDir9am,
+ WindDir3pm,WindSpeed9am,WindSpeed3pm,Humidity9am,Humidity3pm,
+ Pressure9am,Pressure3pm,Cloud9am,Cloud3pm,Temp9am,Temp3pm,
+ RainToday,RainTomorrow);
+
+
+select * from rain
+limit 10;
