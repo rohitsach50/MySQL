@@ -1,0 +1,129 @@
+CREATE TABLE student (
+    student_id INT PRIMARY KEY,
+    name VARCHAR(100),
+    major VARCHAR(50)
+);
+-- PRIMARY KEY(student_id)
+
+DESCRIBE student;
+
+DROP TABLE student;
+
+
+-- adding column to tale
+ALTER TABLE student ADD gpa DECIMAL(3,2);
+
+-- removing column from table 
+ALTER TABLE student DROP COLUMN gpa;
+
+-----------------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE student (
+    student_id INT,
+    name VARCHAR(20),
+    major VARCHAR(20),
+    PRIMARY KEY(student_id)
+);
+
+SELECT * FROM student;
+
+
+INSERT INTO student VALUES(1, 'Jack', 'Biology');
+INSERT INTO student VALUES(2, 'Kate', 'Sociology');
+INSERT INTO student(student_id, name) VALUES(3, 'Claire');
+INSERT INTO student VALUES(4, 'Jack', 'Biology');
+INSERT INTO student VALUES(5, 'Mike', 'Computer Science');
+
+-------------------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE student (
+    student_id INT AUTO_INCREMENT,
+    name VARCHAR(20) NOT NULL,
+    major VARCHAR(20) DEFAULT 'Undecided',
+    PRIMARY KEY(student_id)
+);
+
+DROP TABLE student;
+
+SELECT * FROM student;
+
+INSERT INTO student(name, major) VALUES('Jack', 'Biology');
+INSERT INTO student(name, major) VALUES('Kate', 'Sociology');
+INSERT INTO student(name) VALUES('Claire');
+INSERT INTO student(name, major) VALUES('Jack', 'Biology');
+INSERT INTO student(name, major) VALUES('Mike', 'Computer Science');
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+select * from student;
+
+-- update biology to bio
+
+UPDATE student
+SET major = 'Bio'
+WHERE major = 'Biology'
+
+-- cmputer science to comp sci
+
+UPDATE student
+SET major = 'CompSci'
+WHERE major = 'Computer Science'
+
+UPDATE student
+SET major = 'Chemistry'
+WHERE major = 'Undecided'
+ 
+
+-- bio + chemistry 
+
+UPDATE student
+SET major = 'BioChemistry'
+WHERE major = 'Bio' OR major = 'Chemistry';
+
+-- setting whole column to undecided
+UPDATE student
+SET major = 'Undecided';
+
+delete from student
+where name = 'Jack'and major = 'Undecided';
+
+--delete everything from table
+
+DELETE FROM student;
+
+-------------------------------------------------------------------------------------------------------------
+
+-- Getting information back from database
+
+SELECT *
+FROM student
+ORDER BY name DESC
+LIMIT 2;
+
+SELECT student.name, student.major
+FROM student
+ORDER BY name, major DESC;
+
+
+--FILTERING
+-- <,>,<=,>=,=,<>,AND,OR,IN
+
+SELECT *
+FROM student
+WHERE name = 'Jack';
+
+SELECT *
+FROM student
+WHERE name IN ('Claire', 'Kate');
+
+SELECT *
+FROM student
+WHERE student_id > 2;
+
+SELECT *
+FROM student
+WHERE major = 'Biology' AND student_id > 1;
+       
+);
+
+
